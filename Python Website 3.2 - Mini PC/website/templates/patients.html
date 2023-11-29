@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Patients{% endblock %}
+{% block content %}
+<h1>Patients</h1>
+
+<!-- Add the "Add Patient" button here -->
+<div class="mb-2">
+    <a href="{{ url_for('views.add_patient') }}" class="btn btn-primary">Add Patient</a>
+</div>
+
+<!-- Add the Search Form -->
+<form method="POST" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="search_query" class="form-control" placeholder="Search by Patient ID or Keywords" value="{{ search_query }}">
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Patient ID</th>
+            <th>Behaviors</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patients %}
+        <tr>
+            <td>{{ patient.id }}</td>
+            <td><pre>{{ patient.behaviors }}</pre></td>
+            <td>
+                <form method="POST" action="{{ url_for('views.edit_patient', id=patient.id) }}">
+                    <button type="submit" class="btn btn-primary" style="float: left; margin-right: 10px;">Edit</button>
+                </form>
+                <form method="POST" action="{{ url_for('views.delete_patient', id=patient.id) }}">
+                    <button type="submit" class="btn btn-danger" style="float: left;">Delete</button>
+                </form>
+                <div style="clear: both;"></div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

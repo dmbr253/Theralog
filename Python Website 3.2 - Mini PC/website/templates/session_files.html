@@ -1,0 +1,12 @@
+﻿{% extends "base.html" %}
+{% block title %}Session Files{% endblock %}
+{% block content %}
+<h1>Session Files</h1>
+<ul>
+    {% for file in files %}
+    <li>
+        <a href="{{ url_for('views.download_file', filename=file.relative_path) }}">{{ file.relative_path }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

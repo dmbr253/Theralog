@@ -1,0 +1,7 @@
+REQUIREMENTS:
+
+flask (module) - Super lightweight python framework that allows you to make websites really quickly and easily. If you compare it to DJango
+                 it is not as powerful or used as much in production applications BUT Flask is more simple and faster to do things with. 
+                 Flask is still really good to know and teaches you the fundamentals of web development.
+Flask-SQLAlchemy - Database, it is a wrapper for SQL that makes it much easier for us to create database models, delete models, add models.
+flask-login - For logging users in.

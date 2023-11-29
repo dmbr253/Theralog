@@ -1,0 +1,53 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<h2>Sessions</h2>
+
+<!-- Add the "Add Session" button here with margin -->
+<div class="mb-2">
+    <a href="{{ url_for('views.add_session') }}" class="btn btn-primary">Add Session</a>
+</div>
+
+<div class="container">
+    <!-- The search form -->
+    <form method="POST" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="search_query" class="form-control" placeholder="Search by Patient ID or Keywords" value="{{ search_query }}">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Session ID</th>
+                <th>Patient ID</th>
+                <th>Additional Information</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for session in sessions %}
+            <tr>
+                <td>{{ session.session_id }}</td>
+                <td>{{ session.patient_id }}</td>
+                <td>
+                    <pre>{{ session.additional_information }}</pre>
+                </td>
+                <td>
+                    <form method="POST" action="{{ url_for('views.edit_session', id=session.id) }}">
+                        <button type="submit" class="btn btn-primary" style="float: left; margin-right: 10px;">Edit</button>
+                    </form>
+                    <form method="POST" action="{{ url_for('views.delete_session', id=session.id) }}">
+                        <button type="submit" class="btn btn-danger" style="float: left;">Delete</button>
+                    </form>
+                    <div style="clear: both;"></div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

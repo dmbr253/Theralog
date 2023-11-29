@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Add Patient{% endblock %}
+{% block content %}
+<h1>Add Patient</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.id.label }}
+        {{ form.id(class="form-control") }}
+        {% for error in form.id.errors %}
+        <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    {% if form.id.errors %}
+    <div class="alert alert-danger">
+        {% for error in form.id.errors %}
+        {{ error }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="form-group">
+        {{ form.behaviors.label }}
+        {{ form.behaviors(class="form-control") }}
+        {% for error in form.behaviors.errors %}
+        <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+{% endblock %}
